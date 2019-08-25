@@ -1,18 +1,20 @@
 <?php 
 
-require_once("vendor/autoload.php");
+require_once("vendor/autoload.php"); //Faz parte do Composer, traz as dependências(o que o projeto precisa)
 
-$app = new \Slim\Slim();
+//Namespaces, chama apenas o que vai precisar 
+use \Slim\Slim;
+use \Hcode\Page;
+
+$app = new Slim();
 
 $app->config('debug', true);
 
 $app->get('/', function() {
-    
-	$sql = new Hcode\DB\Sql();
 
-	$resultados = $sql->select("SELECT * FROM tb_users");
+	$page = new Page();
 
-	echo json_encode($resultados);
+	$page->setTpl("index");
 
 });
 
